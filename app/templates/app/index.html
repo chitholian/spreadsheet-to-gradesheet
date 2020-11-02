@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #cdcdcd;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .container {
+            background: #ffffff;
+            margin: auto;
+            display: inline-block;
+            padding: 15px;
+            box-shadow: 0 0 5px #000000;
+            border-radius: 3px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        button[type=submit] {
+            border-radius: 3px;
+            padding: 10px;
+            width: 100%;
+            margin: 10px auto;
+            outline: 0;
+            border: 0;
+            background-color: #01a9d3;
+            color: white;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        
+        button[type=submit]:active {
+            background-color: #4493a7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Submit Your Spread Sheet</legend>
+                <label for="sheet_file">Spread Sheet File</label> <input type="file" name="sheet_file" id="sheet_file" accept=".ods,.xls,.xlsx" required/>
+                <br>
+                <button type="submit">SUBMIT</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

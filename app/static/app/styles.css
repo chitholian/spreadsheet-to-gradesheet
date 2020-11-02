@@ -1,0 +1,84 @@
+body {
+    /* font-family: 'Computer Modern Serif', 'Times New Roman', Times, serif; */
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+table {
+    width: 100%;
+}
+
+table.inline {
+    width: auto;
+}
+
+table.student-info tr td:nth-child(2) {
+    padding: 0 5mm;
+}
+
+img.logo {
+    width: 2cm;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.normal-text {
+    font-weight: normal;
+    font-style: normal;
+}
+
+.bordered-table {
+    border: 1;
+    border-collapse: collapse;
+}
+
+.marks-table {
+    margin: 2mm auto;
+    text-align: center;
+}
+
+.marks-table tbody tr td:nth-child(1),
+.marks-table tbody tr td:nth-child(2) {
+    font-weight: normal;
+    font-style: normal;
+}
+
+.marks-table tbody tr td:nth-child(2) {
+    text-align: left;
+}
+
+.total-table tr td:nth-child(odd):not(:first-child) {
+    padding-left: 2cm;
+}
+
+.date-table tr td:nth-child(odd):not(:first-child) {
+    padding-left: 1cm;
+}
+
+.date-table tr:nth-child(2) td {
+    padding-top: 8mm;
+}
+
+.date-table {
+    position: absolute;
+    bottom: 5mm;
+}
+
+.vtop {
+    vertical-align: top;
+}
+
+.vbottom {
+    vertical-align: bottom;
+}
+
+.grade-distribution {
+    font-size: 0.9em;
+}

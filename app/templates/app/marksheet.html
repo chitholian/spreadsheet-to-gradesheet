@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Sheets</title>
+    <link rel="stylesheet" href="{% static 'app/paper.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}" type="text/css" />
+    <style>
+        @page {
+            size: A4 landscape;
+        }
+        
+        .sheet {
+            padding: 5mm;
+        }
+    </style>
+</head>
+{% autoescape on %}
+
+<body class="A4 landscape">
+    {% for key, data in df %}
+    <section class="sheet">
+        <!-- TOP Table -->
+        <table>
+            <tr>
+                <td class="vtop">
+                    <!-- Logo and Info -->
+                    <table>
+                        <tr>
+                            <td>
+                                <!-- Logo -->
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="{% static 'app/CU-Logo.svg' %}" alt="CU Logo" class="logo" />
+                                        </td>
+                                        <td>
+                                            University of Chittagong <br> {{ data.iloc.0.Faculty }} <br> Department of {{ data.iloc.0.DepartmentID }} <br> {{ data.iloc.0.ExamName }} <br> Held in: {{ data.iloc.0.ExamHeldIn }} <br> Grade Sheet
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="vtop right" rowspan="2">
+                    <!-- Mark Distribution -->
+                    <table class="center bordered-table vtop" border="1">
+                        <thead>
+                            <tr>
+                                <td>Numerical Range</td>
+                                <td>Letter Grade</td>
+                                <td>Grade Point</td>
+                            </tr>
+                        </thead>
+                        <tbody class="normal-text grade-distribution">
+                            <tr>
+                                <td>80% to 100%</td>
+                                <td>A+</td>
+                                <td>4.00</td>
+                            </tr>
+                            <tr>
+                                <td>75% to less than 80%</td>
+                                <td>A</td>
+                                <td>3.75</td>
+                            </tr>
+                            <tr>
+                                <td>70% to less than 75%</td>
+                                <td>A-</td>
+                                <td>3.50</td>
+                            </tr>
+                            <tr>
+                                <td>65% to less than 70%</td>
+                                <td>B+</td>
+                                <td>3.25</td>
+                            </tr>
+                            <tr>
+                                <td>60% to less than 65%</td>
+                                <td>B</td>
+                                <td>3.00</td>
+                            </tr>
+                            <tr>
+                                <td>55% to less than 60%</td>
+                                <td>B-</td>
+                                <td>2.75</td>
+                            </tr>
+                            <tr>
+                                <td>50% to less than 55%</td>
+                                <td>C+</td>
+                                <td>2.50</td>
+                            </tr>
+                            <tr>
+                                <td>45% to less than 50%</td>
+                                <td>C</td>
+                                <td>2.25</td>
+                            </tr>
+                            <tr>
+                                <td>40% to less than 45%</td>
+                                <td>D</td>
+                                <td>2.00</td>
+                            </tr>
+                            <tr>
+                                <td>Less than 40%</td>
+                                <td>F</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Incomplete/Absent</td>
+                                <td>X</td>
+                                <td>X</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="vbottom">
+                    <table class="inline student-info">
+                        <tr>
+                            <td>Serial No.</td>
+                            <td>:</td>
+                            <td>{{ data.iloc.0.TabulationSerial }}</td>
+                        </tr>
+                        <tr>
+                            <td>Student ID</td>
+                            <td>:</td>
+                            <td>{{ data.iloc.0.StudentID }}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td>{{ data.iloc.0.StudentName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Hall</td>
+                            <td>:</td>
+                            <td>{{ data.iloc.0.HallName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Session</td>
+                            <td>:</td>
+                            <td>{{ data.iloc.0.Session }}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <!-- Marks Table -->
+        <table class="bordered-table marks-table" border="1">
+            <thead>
+                <tr>
+                    <td>Course Code</td>
+                    <td>Course Title</td>
+                    <td>Credits</td>
+                    <td>Letter Grade</td>
+                    <td>Grade Point</td>
+                    <td>Credit Points</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for idx, row in data.iterrows %}
+                <tr>
+                    <td>{{ row.CourseNo }}</td>
+                    <td>{{ row.CourseTitle }}</td>
+                    <td>{{ row.Credit|floatformat:"0" }}</td>
+                    <td>{{ row.LG }}</td>
+                    <td>{% if row.GP == 'X' %}X{% else %}{{ row.GP|floatformat:2 }}{% endif %}</td>
+                    <td>{% if row.PS == 'X' %}X{% else %}{{ row.PS|floatformat:2 }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Total Table -->
+        <table class="inline total-table">
+            <tr>
+                <td>Total Credits Offered</td>
+                <td>: {{ data.iloc.0.TCO|floatformat:"0" }}</td>
+
+                <td>Total Credits Earned</td>
+                <td>: {{ data.iloc.0.TCE|floatformat:"0" }}</td>
+
+                <td>Result : P</td>
+            </tr>
+            <tr>
+                <td>Total Credit Points</td>
+                <td>: {% if data.iloc.0.TPS == 'X' %}X{% else %}{{ data.iloc.0.TPS|floatformat:2 }}{% endif %}</td>
+
+                <td>Grade Point Average</td>
+                <td>: {% if data.iloc.0.GPA == 'X' %}X{% else %}{{ data.iloc.0.GPA|floatformat:2 }}{% endif %}</td>
+
+                <td>{% if data.iloc.0.Remark|stringformat:"s" != 'nan' %}Remark : <span class="normal-text">{{ data.iloc.0.Remark }}</span>{% endif %}</td>
+            </tr>
+        </table>
+
+        <!-- Date and Sign Table -->
+        <table class="date-table inline">
+            <tr>
+                <td>Publication Date</td>
+                <td class="normal-text"> ..................................................</td>
+
+                <td>Prepared By</td>
+                <td class="normal-text"> ..................................................</td>
+
+                <td class="center vbottom" rowspan="2">
+                    <span class="normal-text">..................................................</span><br> Controller of Examinations <br> University of Chittagong
+                </td>
+            </tr>
+            <tr>
+                <td>Issue Date</td>
+                <td class="normal-text"> ..................................................</td>
+
+                <td>Compared By</td>
+                <td class="normal-text"> ..................................................</td>
+            </tr>
+        </table>
+
+    </section>
+    {% endfor %}
+</body>
+{% endautoescape %}
+
+</html>
