@@ -60,7 +60,8 @@ The spread-sheet file you use to generate grade-sheets must have following speci
     - `Faculty` -> e.g. `Faculty of Engineering`
     - `DepartmentID` -> e.g. `Computer Science and Engineering`
     - `ExamName` -> e.g. `5th Semester B.Sc. Engineering Examination 2018`
-    - `ExamHeldIn` ->e.g. `April - July 2018`
+    - `ExamHeldIn` -> e.g. `April - July 2018`
+    - `Result` -> e.g. `P`
 - A sample of such spread-sheet file is given in `sample-data` directory. You can use it as a base.
 
 ## Change Grade-Sheet Format
