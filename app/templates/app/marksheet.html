@@ -167,8 +167,8 @@
                     <td>{{ row.CourseTitle }}</td>
                     <td>{{ row.Credit|floatformat:"0" }}</td>
                     <td>{{ row.LG }}</td>
-                    <td>{% if row.GP == 'X' %}X{% else %}{{ row.GP|floatformat:2 }}{% endif %}</td>
-                    <td>{% if row.PS == 'X' %}X{% else %}{{ row.PS|floatformat:2 }}{% endif %}</td>
+                    <td>{% if row.LG.strip == 'X' %}X{% else %}{{ row.GP|floatformat:2 }}{% endif %}</td>
+                    <td>{% if row.LG.strip == 'X' %}X{% else %}{{ row.PS|floatformat:2 }}{% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -177,7 +177,7 @@
         <table class="inline total-table">
             <tr>
                 <td>Total Credits Offered</td>
-                <td>: {{ data.iloc.0.TCO|floatformat:"0" }}</td>
+                <td>: {{ data.iloc.0.TotalCreditOffered|floatformat:"0" }}</td>
 
                 <td>Total Credits Earned</td>
                 <td>: {{ data.iloc.0.TCE|floatformat:"0" }}</td>
@@ -186,10 +186,10 @@
             </tr>
             <tr>
                 <td>Total Credit Points</td>
-                <td>: {% if data.iloc.0.TPS == 'X' %}X{% else %}{{ data.iloc.0.TPS|floatformat:2 }}{% endif %}</td>
+                <td>: {% if data.iloc.0.TPS.strip == 'X' %}X{% else %}{{ data.iloc.0.TPS|floatformat:2 }}{% endif %}</td>
 
                 <td>Grade Point Average</td>
-                <td>: {% if data.iloc.0.GPA == 'X' %}X{% else %}{{ data.iloc.0.GPA|floatformat:2 }}{% endif %}</td>
+                <td>: {% if data.iloc.0.GPA.strip == 'X' %}X{% else %}{{ data.iloc.0.GPA|floatformat:2 }}{% endif %}</td>
 
                 <td>{% if data.iloc.0.Remark|stringformat:"s" != 'nan' %}Remark : <span class="normal-text">{{ data.iloc.0.Remark }}</span>{% endif %}</td>
             </tr>

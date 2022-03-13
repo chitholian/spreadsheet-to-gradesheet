@@ -52,6 +52,7 @@ img.logo {
 
 .marks-table tbody tr td:nth-child(2) {
     text-align: left;
+    padding-left: 1mm;
 }
 
 .total-table tr td:nth-child(odd):not(:first-child) {
