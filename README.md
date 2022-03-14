@@ -52,7 +52,7 @@ The spread-sheet file you use to generate grade-sheets must have following speci
     - `LG` -> Letter Grade the student obtained in the course, e.g. `A+`
     - `GP` -> Grade Point the student obtained in the course, e.g. `4.00`
     - `PS` -> Point Secured by the student in the course, e.g. `12.00`
-    - `TCO` -> Total Credits Offered for all the courses in the respective examination, e.g. `22`
+    - `TotalCreditOffered` -> Total Credits Offered for all the courses in the respective examination, e.g. `22`
     - `TCE` -> Total Credits Earned by the student for all the courses in the respective examination, e.g. `22`
     - `TPS` -> Total Points Secured by the student for all the courses in the respective examination, e.g. `84.26`
     - `GPA` -> Grade Point Average for the student for all the courses in the respective examination, e.g. `3.83`
